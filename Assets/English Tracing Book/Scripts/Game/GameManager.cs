@@ -3,152 +3,80 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-///Developed by Indie Studio
-///https://www.assetstore.unity3d.com/en/#!/publisher/9268
-///www.indiestd.com
-///info@indiestd.com
+
 
 public class GameManager : MonoBehaviour
 {
-	/// <summary>
-	/// Whether the script is running or not.
-	/// </summary>
+	[Header("Timer")]
+	public float timerPoint, startTimer, stoptime;
+	
 	public bool isRunning = true;
 
-	/// <summary>
-	/// The current pencil.
-	/// </summary>
+	
 	public Pencil currentPencil;
 
-	/// <summary>
-	/// The shape order.
-	/// </summary>
 	public Text shapeOrder;
 
-	/// <summary>
-	/// The write shape name text.
-	/// </summary>
 	public Text writeText;
 
-	/// <summary>
-	/// The path.
-	/// </summary>
+	
 	private EnglishTracingBook.Path path;
 
-	/// <summary>
-	/// The shape parent.
-	/// </summary>
+	
 	public Transform shapeParent;
 
-	/// <summary>
-	/// The shape reference.
-	/// </summary>
 	[HideInInspector]
 	public Shape shape;
 
-	/// <summary>
-	/// The path fill image.
-	/// </summary>
 	private Image pathFillImage;
 
-	/// <summary>
-	/// The click postion.
-	/// </summary>
 	private Vector3 clickPostion;
 
-	/// <summary>
-	/// The direction between click and shape.
-	/// </summary>
+	
 	private Vector2 direction;
 
-	/// <summary>
-	/// The current angle , angleOffset and fill amount.
-	/// </summary>
 	private float angle, angleOffset, fillAmount;
 
-	/// <summary>
-	/// The clock wise sign.
-	/// </summary>
 	private float clockWiseSign;
 
-	/// <summary>
-	/// The hand reference.
-	/// </summary>
+	
 	public Transform hand;
 
-	/// <summary>
-	/// The default size of the cursor.
-	/// </summary>
+	
 	private Vector3 cursorDefaultSize;
 
-	/// <summary>
-	/// The click size of the cursor.
-	/// </summary>
+	
 	private Vector3 cursorClickSize;
 
-	/// <summary>
-	/// The target quarter of the radial fill.
-	/// </summary>
 	private float targetQuarter;
 
-	/// <summary>
-	/// The effects audio source.
-	/// </summary>
+	
 	private AudioSource effectsAudioSource;
 
-	/// <summary>
-	/// The bright effect.
-	/// </summary>
 	public Transform brightEffect;
 
-	/// <summary>
-	/// The complete effect.
-	/// </summary>
-	/*public ParticleEmitter completeEffect;*/
-
-	/// <summary>
-	/// The timer reference. 
-	/// </summary>
+	
 	public Timer timer;
+	public TimerWinDialog timerwin;
 
-	/// <summary>
-	/// The window dialog reference.
-	/// </summary>
 	public WinDialog winDialog;
 
-	/// <summary>
-	/// The completed sound effect.
-	/// </summary>
 	public AudioClip completedSFX;
 
-	/// <summary>
-	/// The correct sound effect.
-	/// </summary>
+	
 	public AudioClip correctSFX;
 
-	/// <summary>
-	/// The wrong sound effect.
-	/// </summary>
+	
 	public AudioClip wrongSFX;
 
-	/// <summary>
-	/// The locked sound effect.
-	/// </summary>
+	
 	public AudioClip lockedSFX;
 
-	/// <summary>
-	/// The hit2d reference.
-	/// </summary>
+	
 	private RaycastHit2D hit2d;
 
-	/// <summary>
-	/// The shapes manager reference.
-	/// </summary>
 	private ShapesManager shapesManager;
 
-	/// <summary>
-	/// The compound shape reference.
-	/// </summary>
 	public static CompoundShape compoundShape;
 
 	public Image shapePicture;
@@ -176,6 +104,8 @@ public class GameManager : MonoBehaviour
 		ResetTargetQuarter ();
 		SetShapeOrderColor ();
 		CreateShape ();
+
+		
 	}
 
 	void Start(){
@@ -183,11 +113,13 @@ public class GameManager : MonoBehaviour
 		if (effectsAudioSource == null) {
 			effectsAudioSource = GameObject.Find ("AudioSources").GetComponents<AudioSource> () [1];
 		}
+		
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
+		
 		//Game Logic is here
 
 		DrawHand (GetCurrentPlatformClickPosition (Camera.main));
@@ -274,7 +206,7 @@ public class GameManager : MonoBehaviour
 			shape = path.shape;
 		}
 	}
-
+	 
 	/// <summary>
 	/// Go to the Next shape.
 	/// </summary>
@@ -336,7 +268,7 @@ public class GameManager : MonoBehaviour
 		GameObject.Find ("ResetConfirmDialog").GetComponent<Dialog> ().Hide ();
 		Area.Hide ();
 		winDialog.Hide ();
-		GameObject.Find ("NextButton").GetComponent<Animator> ().SetBool ("Select", false);
+		GameObject.Find ("HomeButton").GetComponent<Animator> ().SetBool ("Select", false);
 
 		CompoundShape currentCompoundShape = GameObject.FindObjectOfType<CompoundShape> ();
 		if (currentCompoundShape != null) {
@@ -607,7 +539,8 @@ public class GameManager : MonoBehaviour
 			shapes.Add (shape);
 		}
 
-		if (allDone) {
+		if (allDone) 
+		{
 			SaveShapeStatus (shapes);
 
 			DisableHand ();
@@ -621,9 +554,11 @@ public class GameManager : MonoBehaviour
 
 			timer.Stop ();
 			Area.Show ();
-			winDialog.Show ();
-			GameObject.Find ("NextButton").GetComponent<Animator> ().SetTrigger ("Select");
-			/*completeEffect.emit = true;*/
+
+			/*timerwin.Stop();*/
+				winDialog.Show();
+				GameObject.Find("HomeButton").GetComponent<Animator>().SetTrigger("Select");
+		
 			if (completedSFX != null && effectsAudioSource != null) {
 				CommonUtil.PlayOneShotClipAt (completedSFX, Vector3.zero, effectsAudioSource.volume);
 			}

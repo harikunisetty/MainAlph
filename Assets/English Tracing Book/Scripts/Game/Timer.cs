@@ -1,45 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
-///Developed by Indie Studio
-///https://www.assetstore.unity3d.com/en/#!/publisher/9268
-///www.indiestd.com
-///info@indiestd.com
+ 
 
 [DisallowMultipleComponent]
 public class Timer : MonoBehaviour
 {
-		/// <summary>
-		/// Text Component
-		/// </summary>
+		
 		public Text uiText;
 
-		/// <summary>
-		/// The time in seconds.
-		/// </summary>
+		
 		[HideInInspector]
 		public int
 				timeInSeconds;
 
-		/// <summary>
-		/// The progress reference.
-		/// </summary>
 		public Progress progress;
 
-		/// <summary>
-		/// Whether the Timer is running
-		/// </summary>
+		
 		private bool isRunning;
 
-		/// <summary>
-		/// The time counter.
-		/// </summary>
 		private float timeCounter;
 
-		/// <summary>
-		/// The sleep time.
-		/// </summary>
+		
 		private float sleepTime;
 
 
@@ -48,13 +30,11 @@ public class Timer : MonoBehaviour
 				if (uiText == null) {
 						uiText = GetComponent<Text> ();
 				}
-				///Start the Timer
+				
 				Start ();
 		}
 
-		/// <summary>
-		/// Start the Timer.
-		/// </summary>
+		
 		public void Start ()
 		{
 				if (!isRunning) {
@@ -66,9 +46,7 @@ public class Timer : MonoBehaviour
 				}
 		}
 
-		/// <summary>
-		/// Stop the Timer.
-		/// </summary>
+	
 		public void Stop ()
 		{
 				if (isRunning) {
@@ -77,18 +55,14 @@ public class Timer : MonoBehaviour
 				}
 		}
 
-		/// <summary>
-		/// Reset the timer.
-		/// </summary>
+		
 		public void Reset ()
 		{
 				Stop ();
 				Start ();
 		}
 
-		/// <summary>
-		/// Wait.
-		/// </summary>
+		
 		private void Wait ()
 		{
 				timeCounter += sleepTime;
@@ -99,26 +73,16 @@ public class Timer : MonoBehaviour
 
 		}
 
-		/// <summary>
-		/// Applies the time into TextMesh Component.
-		/// </summary>
 		private void ApplyTime ()
 		{
 				if (uiText == null) {
 						return;
 				}
-				//	int mins = timeInSeconds / 60;
-				//	int seconds = timeInSeconds % 60;
-
-				//	uiText.text = "Time : " + GetNumberWithZeroFormat (mins) + ":" + GetNumberWithZeroFormat (seconds);
+			
 				uiText.text = timeInSeconds.ToString ();
 		}
 
-		/// <summary>
-		/// Get the number with zero format.
-		/// </summary>
-		/// <returns>The number with zero format.</returns>
-		/// <param name="number">Ineger Number.</param>
+		
 		public static string GetNumberWithZeroFormat (int number)
 		{
 				string strNumber = "";
