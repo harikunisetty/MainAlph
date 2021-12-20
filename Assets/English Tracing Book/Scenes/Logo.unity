@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sleepTime: 4
-  nextSceneName: Main
+  nextSceneName: MainMenuScene
 --- !u!114 &1545143902
 MonoBehaviour:
   m_ObjectHideFlags: 0

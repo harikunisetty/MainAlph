@@ -5,15 +5,21 @@ using UnityEngine;
 public class BaloonMoving : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public float speed;
+    public float RestartTimer;
+
+    public void MoveRight()
+    {
+        rb.velocity = -transform.up * speed;
+    }
+    public void MoveLeft()
+    {
+        rb.velocity = transform.up* speed;
+    }
+    // Update is called once per frame
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        InvokeRepeating("MoveRight", 0, RestartTimer);
+        InvokeRepeating("MoveLeft", RestartTimer / 2, RestartTimer);
     }
 }

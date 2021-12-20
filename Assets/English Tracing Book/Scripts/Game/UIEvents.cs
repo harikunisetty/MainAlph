@@ -35,7 +35,7 @@ public class UIEvents : MonoBehaviour
 		}
 
 		public void LoadMainScene(){
-			StartCoroutine(SceneLoader.LoadSceneAsync ("Main"));
+			StartCoroutine(SceneLoader.LoadSceneAsync ("MainMenuScene"));
 		}
 
 		public void LoadGameScene(){
