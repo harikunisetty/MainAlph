@@ -34,13 +34,20 @@ public class UIEvents : MonoBehaviour
 				}
 		}
 
-		public void LoadMainScene(){
-			StartCoroutine(SceneLoader.LoadSceneAsync ("MainMenuScene"));
-		}
+	public void LoadMainScene()
+	{
+		StartCoroutine(SceneLoader.LoadSceneAsync ("MainMenuScene"));
+	}
+	public void LoadBackScene()
+	{
+		StartCoroutine(SceneLoader.LoadSceneAsync("Main"));
+	}
 
-		public void LoadGameScene(){
+
+	public void LoadGameScene()
+	{
 			StartCoroutine(SceneLoader.LoadSceneAsync ("Game"));
-		}
+	}
 
 		public void LoadAlbumScene ()
 		{

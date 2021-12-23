@@ -14,9 +14,8 @@ public class BaloonMoving : MonoBehaviour
     }
     public void MoveLeft()
     {
-        rb.velocity = transform.up* speed;
+        rb.velocity = transform.up * speed;
     }
-    // Update is called once per frame
     void Start()
     {
         InvokeRepeating("MoveRight", 0, RestartTimer);
